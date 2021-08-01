@@ -1,6 +1,8 @@
 import React from "react";
-import {IContact} from "./interfaces";
 import {Button, Col, List, Row, Typography} from "antd";
+
+import {IContact} from "../interfaces";
+import "./list.css";
 
 interface Props {
     contactList: IContact[];
@@ -35,6 +37,7 @@ const ContactList: React.FC<Props> = ({
                     <Typography.Text strong={selectedContactKey === key}>{name}</Typography.Text>
                 </List.Item>
             )}
+            className="contact-page-list"
         />
     )
 }

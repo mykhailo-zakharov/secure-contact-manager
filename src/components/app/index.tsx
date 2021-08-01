@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 
 import "antd/dist/antd.css";
-import './App.css';
+import './app.css';
 
-import AuthPage from "../views/auth-page";
-import ContactPage from "../views/contact-page";
+import AuthPage from "../../views/auth-page";
+import ContactPage from "../../views/contact-page";
 import {Layout, Typography} from "antd";
 
 function App() {
