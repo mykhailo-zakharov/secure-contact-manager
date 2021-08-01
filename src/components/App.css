@@ -1,0 +1,19 @@
+.ant-layout {
+  min-height: 100vh;
+}
+.site-layout-background {
+  background: #fff;
+}
+
+.site-layout-main-content {
+  margin: 24px 16px;
+}
+
+.site-layout-content {
+  padding: 24px;
+}
+
+.site-header-title {
+  margin: 0 !important;
+  line-height: 64px !important;
+}
