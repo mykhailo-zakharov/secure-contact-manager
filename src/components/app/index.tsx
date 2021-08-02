@@ -32,20 +32,28 @@ function App() {
                 <Col flex="auto">
                     <Typography.Title level={3} className="site-header-title">Secure Contact Manager</Typography.Title>
                 </Col>
-                <Col>
-                    <Button onClick={() => handleDownloadFile(password, contactList)}>Download</Button>
-                </Col>
-                <Col>
-                    <Button onClick={quit}>Quit</Button>
-                </Col>
+                {isUserAuth && (
+                    <>
+                        <Col>
+                            <Button onClick={() => handleDownloadFile(password, contactList)}>
+                                Download
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Button onClick={quit}>Quit</Button>
+                        </Col>
+                    </>
+                )}
             </Row>
         </Layout.Header>
           <Layout.Content className="site-layout-main-content">
             {isUserAuth
-                ? <ContactPage
-                    contactList={contactList}
-                    setContactList={setContactList}
-                />
+                ? (
+                    <ContactPage
+                        contactList={contactList}
+                        setContactList={setContactList}
+                    />
+                )
                 : <AuthPage initUser={initUser} />
             }
           </Layout.Content>
