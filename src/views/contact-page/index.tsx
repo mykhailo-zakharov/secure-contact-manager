@@ -7,18 +7,12 @@ import NewDrawer from "./forms/new-drawer";
 import EditDrawer from "./forms/edit-drawer";
 import {IContact, IContactFormData} from "./interfaces";
 
-const mockList = (): IContact[] => {
-    return new Array(100).fill(null).map((_, index) => ({
-        key: index,
-        name: `Contact ${index + 1}`,
-        phone: "",
-        email: "",
-        address: "",
-    }))
+interface Props {
+    contactList: IContact[];
+    setContactList: (list: IContact[]) => void;
 }
 
-const ContactPage: React.FC = () => {
-    const [contactList, setContactList] = useState<IContact[]>([]);
+const ContactPage: React.FC<Props> = ({ contactList, setContactList }) => {
     const [selectedContactKey, setSelectedContactKey] = useState<number>();
     const [isCreateContactDrawerVisible, setIsCreateContactDrawerVisible] = useState(false);
     const [isEditContactDrawerVisible, setIsEditContactDrawerVisible] = useState(false);
