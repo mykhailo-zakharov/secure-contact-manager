@@ -1,29 +1,22 @@
-import React, {useState} from "react";
-import {Button, Form, Input, Upload, Tabs, Layout} from "antd";
-import { UploadChangeParam } from "antd/lib/upload/interface";
+import React from "react";
+import {Button, Form, Input, Upload, Tabs, Layout, Typography} from "antd";
+import {UploadChangeParam} from "antd/lib/upload/interface";
 
-import {readFileAsync} from "../../helpers/read-file-async";
-import {parseJsonAsync} from "../../helpers/parse-json-async";
-import {IContact} from "../contact-page/interfaces";
+import {useAuthHook} from "./use-auth-hook";
+import {AuthFormData, InitUser} from "./interfaces";
 
 interface Props {
-    initUser: (password: string, list: IContact[]) => void;
+    initUser: InitUser;
 }
 
 const Auth: React.FC<Props> = ({ initUser }) => {
-    const [isExistingForm, setIsExistingForm] = useState(true);
-
-    const onFinish = async (values: any) => {
-        const password = values.password;
-        let list: IContact[] = [];
-        if (isExistingForm) {
-            const fileContent = (await readFileAsync(values.files[0].originFileObj as Blob)) as string;
-            const fileData = await parseJsonAsync(fileContent);
-            // @ts-ignore
-            list = fileData.list;
-        }
-        initUser(password, list);
-    };
+   const {
+       onChangeForm,
+       onChangeTab,
+       onFinish,
+       isFormValid,
+       isExistingForm,
+   } = useAuthHook(initUser);
 
     return (
         <Layout.Content
@@ -32,15 +25,16 @@ const Auth: React.FC<Props> = ({ initUser }) => {
         >
             <Tabs
                 defaultActiveKey="1"
-                onChange={() => setIsExistingForm(!isExistingForm)}
+                onChange={onChangeTab}
             >
                 <Tabs.TabPane tab="Upload contacts from a file" key="existing" />
                 <Tabs.TabPane tab="Create new contacts" key="new" />
             </Tabs>
-            <Form
+            <Form<AuthFormData>
                 name="auth"
                 labelCol={{ span: 6 }}
                 onFinish={onFinish}
+                onChange={onChangeForm}
             >
                 {isExistingForm && (
                     <Form.Item
@@ -77,6 +71,12 @@ const Auth: React.FC<Props> = ({ initUser }) => {
                 >
                     <Input.Password />
                 </Form.Item>
+
+                {!isFormValid && (
+                    <Typography.Paragraph style={{ textAlign: "center" }}>
+                        <Typography.Text type="danger">Either the password is wrong or the file is broken!</Typography.Text>
+                    </Typography.Paragraph>
+                )}
 
                 <Form.Item wrapperCol={{ offset: 6 }}>
                     <Button type="primary" htmlType="submit">
