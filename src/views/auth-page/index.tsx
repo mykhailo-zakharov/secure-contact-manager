@@ -6,16 +6,6 @@ import {readFileAsync} from "../../helpers/read-file-async";
 import {parseJsonAsync} from "../../helpers/parse-json-async";
 import {IContact} from "../contact-page/interfaces";
 
-const mockList = (): IContact[] => {
-    return new Array(100).fill(null).map((_, index) => ({
-        key: index,
-        name: `Contact ${index + 1}`,
-        phone: "",
-        email: "",
-        address: "",
-    }))
-};
-
 interface Props {
     initUser: (password: string, list: IContact[]) => void;
 }
@@ -25,10 +15,7 @@ const Auth: React.FC<Props> = ({ initUser }) => {
         const fileContent = (await readFileAsync(values.files[0].originFileObj as Blob)) as string;
         const fileData = await parseJsonAsync(fileContent);
         const password = values.password;
-        console.log('Success:', {
-            password, fileData
-        });
-        initUser(password, mockList());
+        initUser(password, fileData.list);
     };
 
     return (
