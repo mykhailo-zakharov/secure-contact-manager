@@ -21,7 +21,7 @@ const EditDrawer: React.FC<Props> = ({ save, visible, close, contact }) => {
                 type="primary"
                 onClick={submit}
             >
-                Edit
+                Save
             </Button>
             <Button onClick={cancel}>Cancel</Button>
         </Space>

@@ -19,6 +19,7 @@ const Auth: React.FC<Props> = ({ initUser }) => {
         if (isExistingForm) {
             const fileContent = (await readFileAsync(values.files[0].originFileObj as Blob)) as string;
             const fileData = await parseJsonAsync(fileContent);
+            // @ts-ignore
             list = fileData.list;
         }
         initUser(password, list);
@@ -65,7 +66,6 @@ const Auth: React.FC<Props> = ({ initUser }) => {
                             showUploadList={{ showRemoveIcon: false }}
                         >
                             <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                            <p className="ant-upload-hint">Support for a single or bulk upload.</p>
                         </Upload.Dragger>
                     </Form.Item>
                 )}

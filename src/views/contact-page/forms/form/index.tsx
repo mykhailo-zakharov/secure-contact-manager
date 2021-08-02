@@ -33,7 +33,12 @@ const ContactForm: React.FC<Props> = ({ form, initValues = defaultValues }) => {
                 label="Phone"
                 name="phone"
                 required
-                rules={[{ required: true }, { min: 3 }, { max: 15 }]}
+                rules={[
+                    { required: true },
+                    { message: "Phone should contain numbers only", pattern: /^\d+$/ },
+                    { min: 3 },
+                    { max: 15 },
+                ]}
             >
                 <Input/>
             </Form.Item>
