@@ -50,7 +50,7 @@ const ContactPage: React.FC<Props> = ({ contactList, setContactList }) => {
 
     return (
         <Row gutter={[16, 24]} style={{ height: "100%" }}>
-            <Col span={6}>
+            <Col style={{ width: 400 }}>
                 <Layout.Content className="site-layout-background site-layout-content" style={{ height: "100%", position: "relative" }}>
                     <ContactList
                         contactList={contactList}
@@ -61,7 +61,7 @@ const ContactPage: React.FC<Props> = ({ contactList, setContactList }) => {
                     />
                 </Layout.Content>
             </Col>
-            <Col span={18}>
+            <Col flex="auto">
                 <Layout.Content className="site-layout-background site-layout-content">
                     <Details
                         contact={selectedContact}

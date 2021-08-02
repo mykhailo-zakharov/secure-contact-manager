@@ -46,8 +46,12 @@ const ContactList: React.FC<Props> = ({
         <List
             header={header}
             dataSource={sortedFilteredList}
-            renderItem={({ name, key }) => (
-                <List.Item onClick={() => setSelectedContactKey(key)} style={{ cursor: "pointer" }}>
+            renderItem={({ name, key, phone }) => (
+                <List.Item
+                    onClick={() => setSelectedContactKey(key)}
+                    style={{ cursor: "pointer" }}
+                    extra={<Typography.Text type="secondary">{phone}</Typography.Text>}
+                >
                     <Typography.Text strong={selectedContactKey === key}>{name}</Typography.Text>
                 </List.Item>
             )}
