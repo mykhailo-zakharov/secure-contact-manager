@@ -8,7 +8,7 @@ import ContactPage from "../../views/contact-page";
 import {Layout, Typography} from "antd";
 
 function App() {
-  const [isUserAuth, setIsUserAuth] = useState(true);
+  const [isUserAuth, setIsUserAuth] = useState(false);
 
   return (
       <Layout>
