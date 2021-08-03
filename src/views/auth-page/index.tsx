@@ -54,7 +54,7 @@ const Auth: React.FC<Props> = ({ initUser }) => {
                                     }
                                 }, 0);
                             }}
-                            accept=".json"
+                            accept=".txt"
                             multiple={false}
                             maxCount={1}
                             showUploadList={{ showRemoveIcon: false }}

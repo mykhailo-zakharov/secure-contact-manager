@@ -50,7 +50,7 @@ const Details: React.FC<Props> = ({ contact, onEditContactDrawerOpen , onDeleteC
                 <Col>
                     <Typography.Text strong>Address: </Typography.Text>
                     {contact.address
-                        ? <div style={{ whiteSpace: "pre-line"}}>{contact.address}</div>
+                        ? <div style={{ whiteSpace: "pre-line", paddingLeft: 16 }}>{contact.address}</div>
                         : <Typography.Text>- -</Typography.Text>
                     }
                 </Col>
